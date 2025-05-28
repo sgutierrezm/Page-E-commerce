@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pageId === 'account' && currentUser) { // Solo renderizar si está logueado
             renderAccountPage();
         } else if (pageId === 'account' && !currentUser) {
-            showPage('login'); // Si intenta ir a cuenta sin loguear, va a login
+            showPage('inicio'); // Si intenta ir a cuenta sin loguear, va a login
         }
     }
 
@@ -157,14 +157,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- LÓGICA DE LOGIN FICTICIO ---
-   async function fetchReqresUsers() {
+async function fetchReqresUsers() {
     try {
-        console.log("Fetching from:", USERS_API_URL);
         const response = await fetch(USERS_API_URL);
-        console.log("Status code:", response.status);
-        if (!response.ok) throw new Error('Error al cargar usuarios');
+        if (!response.ok) {
+            throw new Error(`Error al cargar usuarios: ${response.status}`);
+        }
+
         const data = await response.json();
-        console.log("Received data:", data);
         reqresUsers = data.data;
         renderAvailableUsers();
     } catch (error) {
