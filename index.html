@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ababila</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/Moon--Streamline-Solar.png" type="image/png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="nav-logo" data-page="home">Ababila</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link" data-page="home">Inicio</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-page="products">Productos</a></li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item user-menu-container">
+                        <a href="#" id="user-icon-button" class="nav-link" aria-label="User Menu">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+                        <div class="user-dropdown-menu" id="user-dropdown">
+                            <a href="#" class="dropdown-item" id="dropdown-login" data-page="login">Login</a>
+                            <a href="#" class="dropdown-item" id="dropdown-account" data-page="account" style="display:none;">Mi Cuenta</a>
+                            <a href="#" class="dropdown-item" id="dropdown-logout" style="display:none;">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+<!-- Login page -->
+    <main class="container">
+        <section id="login-page" class="page">
+            <h2>Iniciar Sesión (Ficticio)</h2>
+            <form id="login-form">
+                <p>Ingresa un email de un usuario existente en <a href="https://reqres.in/" target="_blank">reqres.in</a> </p>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required placeholder="usuario@reqres.in">
+                </div>
+                <button type="submit" class="btn">Ingresar</button>
+                <p id="login-message"></p>
+            </form>
+            <div id="user-list-info" style="margin-top: 20px;">
+                <p>Usuarios disponibles (puedes usar cualquiera de estos emails):</p>
+                <ul id="available-users"><li>Cargando usuarios...</li></ul>
+            </div>
+        </section>
+<!-- Home page  where are best seller section and some more products -->
+        <section id="home-page" class="page active">
+            <div class="hero">
+                <h1>Bienvenido a Ababila </h1>
+                <p>Tu tienda de tecnología con estilo.</p>
+                <button class="btn btn-primary" data-page-target="products">Ver Productos</button>
+            </div>
+
+            <div class="bestsellers-section">
+                <h2>Nuestros Best Sellers</h2>
+                <div class="carousel-container">
+                    <button class="carousel-button prev" id="carousel-prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel">
+                        <div class="carousel-track" id="bestsellers-carousel-track">
+                            </div>
+                    </div>
+                    <button class="carousel-button next" id="carousel-next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="featured-products">
+                <h2>Más Productos</h2>
+                <div id="featured-products-container" class="product-grid">
+                    </div>
+            </div>
+        </section>
+<!-- All the productos and search filter -->
+        <section id="products-page" class="page">
+            <h2>Nuestros Productos</h2>
+            <div id="product-filters">
+                <input type="text" id="search-bar" placeholder="Buscar productos...">
+                <select id="category-filter">
+                    <option value="all">Todas las categorías</option>
+                    </select>
+            </div>
+            <div id="product-list" class="product-grid">
+                </div>
+        </section>
+<!-- Product details page when a click is made -->
+        <section id="product-detail-page" class="page">
+            <button class="btn btn-secondary" id="back-to-products" style="margin-bottom:20px;">&larr; Volver a Productos</button>
+            <div id="product-detail-content">
+                </div>
+        </section>
+<!-- Cart page section and cart summary,  -->
+        <section id="cart-page" class="page">
+            <h2>Tu Carrito de Compras</h2>
+            <div id="cart-items">
+                </div>
+            <div id="cart-summary">
+                <h3>Resumen del Pedido</h3>
+                <p>Subtotal: <span id="cart-subtotal">$0.00</span></p>
+                <p>Envío: <span id="cart-shipping">$5.00</span></p>
+                <p><strong>Total: <span id="cart-total">$0.00</span></strong></p>
+                <button id="checkout-button" class="btn btn-primary" disabled>Proceder al Pago (Simulado)</button>
+            </div>
+            <div id="empty-cart-message" style="display: none;">
+                <p>Tu carrito está vacío.</p>
+                <button class="btn" data-page-target="products">Ver Productos</button>
+            </div>
+        </section>
+<!-- Account details and account favorite products -->
+        <section id="account-page" class="page">
+            <h2>Mi Cuenta</h2>
+            <div id="user-details-section" class="account-section">
+                <h3>Mis Datos</h3>
+                <p><strong>Nombre:</strong> <span id="account-user-name">N/A</span></p>
+                <p><strong>Email:</strong> <span id="account-user-email">N/A</span></p>
+            </div>
+            <div id="favorite-products-section" class="account-section">
+                <h3>Mis Productos Favoritos</h3>
+                <div id="favorite-products-list" class="product-grid">
+                    <p id="no-favorites-message">Aún no tienes productos favoritos. ¡Añade algunos <i class="far fa-heart"></i>!</p>
+                </div>
+            </div>
+        </section>
+<!-- Checkout simulado -->
+        <section id="checkout-page" class="page">
+            <h2>Checkout (Simulación)</h2>
+            <form id="checkout-form">
+                <p>Gracias por tu interés. Este es un checkout simulado.</p>
+                <div class="form-group">
+                    <label for="checkout-name">Nombre Completo:</label>
+                    <input type="text" id="checkout-name" value="Usuario Ejemplo" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="checkout-email">Email:</label>
+                    <input type="email" id="checkout-email" value="usuario@ejemplo.com" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="checkout-address">Dirección de Envío:</label>
+                    <textarea id="checkout-address" rows="3" placeholder="Ingresa tu dirección"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Confirmar Pedido (Simulado)</button>
+            </form>
+            <div id="order-confirmation" style="display:none; margin-top: 20px; padding: 15px; background-color: var(--primary-purple); border-radius: 5px;">
+                <p>¡Gracias por tu compra simulada! Tu pedido ha sido "procesado".</p>
+                <button class="btn" data-page-target="home">Volver al Inicio</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ababila E-Shop. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
