@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let favoriteProductIds = JSON.parse(localStorage.getItem('favoriteProductIds')) || []; // NUEVO
     let currentCarouselIndex = 0; // NUEVO
 
-    const USERS_API_URL = 'https://reqres.in/api/users?page=2';
+const USERS_API_URL = 'https://cors-anywhere.herokuapp.com/https://reqres.in/api/users?page=2';
     const PRODUCTS_API_URL = 'https://fakestoreapi.com/products';
     const BESTSELLERS_COUNT = 5; // Número de productos para el carrusel (NUEVO)
 
