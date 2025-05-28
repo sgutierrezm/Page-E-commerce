@@ -21,10 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const loginMessage = document.getElementById('login-message');
     const availableUsersList = document.getElementById('available-users');
-    // const navLogin = document.getElementById('nav-login'); // Obsoleto con el nuevo menú
-    // const navUser = document.getElementById('nav-user'); // Obsoleto con el nuevo menú
-    // const userGreeting = document.getElementById('user-greeting'); // Obsoleto con el nuevo menú
-    // const logoutButton = document.getElementById('logout-button'); // Obsoleto con el nuevo menú
+
 
     // Productos y Filtros
     const productListContainer = document.getElementById('product-list');
@@ -75,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const USERS_API_URL = 'https://reqres.in/api/users?page=2';
     const PRODUCTS_API_URL = 'https://fakestoreapi.com/products';
-    const BESTSELLERS_COUNT = 5; // Número de productos para el carrusel (NUEVO)
+    const BESTSELLERS_COUNT = 5; // Número de productos para el carrusel 
 
     // --- NAVEGACIÓN SPA SIMPLE (MODIFICADA) ---
     function showPage(pageId) {
@@ -160,18 +157,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- LÓGICA DE LOGIN FICTICIO ---
-    async function fetchReqresUsers() {
-        try {
-            const response = await fetch(USERS_API_URL);
-            if (!response.ok) throw new Error('Error al cargar usuarios');
-            const data = await response.json();
-            reqresUsers = data.data;
-            renderAvailableUsers();
-        } catch (error) {
-            console.error("Error fetching users:", error);
-            if(availableUsersList) availableUsersList.innerHTML = '<li>michael.lawson@reqres.in</li><li>tobias.funke@reqres.in</li>';
+   async function fetchReqresUsers() {
+    try {
+        console.log("Fetching from:", USERS_API_URL);
+        const response = await fetch(USERS_API_URL);
+        console.log("Status code:", response.status);
+        if (!response.ok) throw new Error('Error al cargar usuarios');
+        const data = await response.json();
+        console.log("Received data:", data);
+        reqresUsers = data.data;
+        renderAvailableUsers();
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        if (availableUsersList) {
+            availableUsersList.innerHTML = '<li>michael.lawson@reqres.in</li><li>tobias.funke@reqres.in</li>';
         }
     }
+}
+
 
     function updateDetailStockDisplay() {
         if (!currentDetailProductId) return;
